@@ -4,6 +4,37 @@
   <add sel="/language">
     <page id="1972092446" title="False Flag Detector" descr="" voice="no">
       <t id="1">False Flag Detector</t>
+      <t id="2">報告您任一飛船、空間站或衛星視野內懸掛偽旗的飛船。需通過研究解鎖。</t>
+
+      <!-- Research -->
+      <t id="201">偽旗檢測</t>
+      <t id="202">在您的整個傳感器網絡中，將應答機代碼與船體特徵進行交叉比對。您任一飛船、空間站或衛星視野內懸掛偽旗的飛船都將被報告。</t>
+      <t id="211">真實所有者識別</t>
+      <t id="212">將船體特徵與各勢力的船籍登記進行比對，使每份偽旗報告都同時指明該飛船的真實所有者。</t>
+
+      <!-- Messages -->
+      <t id="1001">檢測到偽旗</t>
+      <t id="1002">%s正在%s冒用%s的旗號航行。</t>
+      <t id="1003">%s正在%s冒用%s的旗號航行。真實所有者：%s。</t>
+      <t id="1004">檢測到%s艘懸掛偽旗的飛船。</t>
+      <t id="1005">已附加Shadow Tracker。</t>
+      <t id="1020">\033R偽旗\033X</t>
+      <t id="1021">\033R檢測到偽旗\033X</t>
+      <!-- Colour wrapper: AARRGGBB, text -->
+      <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Detection (90000) -->
+      <t id="90000">檢測</t>
+      <t id="90001">在消息欄中顯示通知</t>
+      <t id="90002">寫入日誌條目</t>
+      <t id="90003">掃瞄間隔</t>
+      <t id="90004">每次掃瞄報告的飛船數量 \(0 = 一次全部報告\)</t>
+      <t id="90005">離開視野多久後再次報告 \(0 = 永不\)</t>
+
+      <!-- Section: Shadow Tracker (90010) -->
+      <t id="90010">Shadow Tracker</t>
+      <t id="90011">為每艘被檢測到的飛船附加Shadow Tracker</t>
+      <t id="90012">為每艘被檢測到的飛船附加Shadow Tracker \(需要Shadow Tracker 8.00.04或更高版本\)</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">調試</t>

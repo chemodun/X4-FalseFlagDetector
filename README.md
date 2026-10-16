@@ -12,7 +12,7 @@ Pirates and smugglers often fly under someone else's flag: a Scale Plate trader 
 
 ## Limitations
 
-- A ship is reported once per disguise: again when it switches to another false flag, or drops its flag and later takes one again. A ship that leaves your sensor coverage and comes back under the same flag is reported again only when **Report again after out of view for** is set.
+- A ship is reported once per disguise: again when it switches to another false flag, or drops its flag and later takes one again. A ship that leaves your sensor coverage and comes back under the same flag is reported again only when **Report again after being out of view for** is set.
 - Detection only names the ship. To expose it in the game, scan it as usual: a finished scan strips the false flag, and the local forces can respond.
 - Your own ships flying under a cover faction are never reported.
 
@@ -71,7 +71,7 @@ An options page is available via the `Extension Options` menu:
 - **Write an entry to the logbook** - on by default.
 - **Scan interval** - how often the detector checks, from 3 to 60 seconds - 5 by default.
 - **Ships reported per scan** - at most this many new ships are reported by one scan; the others wait for the next scans, so a sensor network that suddenly sees many disguised ships does not flood the logbook. 0 reports all of them at once - 3 by default.
-- **Report again after out of view for** - a ship that comes back into view under the same false flag after at least this many minutes out of view is reported again, from 0 to 120 minutes; 0 never reports it again - 0 by default.
+- **Report again after being out of view for** - a ship that comes back into view under the same false flag after at least this many minutes out of view is reported again, from 0 to 120 minutes; 0 never reports it again - 0 by default.
 - **Attach a Shadow Tracker to every detected ship** - off by default; available only with Shadow Tracker 8.00.04 or newer, which lets other extensions request tracking.
 - **Debug Level** - None, Debug or Trace; writes detailed lines to the game log.
 

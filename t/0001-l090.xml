@@ -4,6 +4,37 @@
   <add sel="/language">
     <page id="1972092446" title="False Flag Detector" descr="" voice="no">
       <t id="1">False Flag Detector</t>
+      <t id="2">Gemilerinizin, istasyonlarınızın veya uydularınızın herhangi birinin görebildiği, sahte bayrak altında uçan gemileri bildirir. Araştırma ile açılır.</t>
+
+      <!-- Research -->
+      <t id="201">Sahte Bayrak Tespiti</t>
+      <t id="202">Sensör ağınız genelinde transponder kodlarını gövde imzalarıyla karşılaştırır. Gemilerinizin, istasyonlarınızın veya uydularınızın herhangi birinin görebildiği, sahte bayrak altında uçan gemiler bildirilir.</t>
+      <t id="211">Gerçek Sahibin Belirlenmesi</t>
+      <t id="212">Gövde imzalarını fraksiyon kayıtlarıyla eşleştirir; böylece her sahte bayrak raporunda geminin gerçek sahibi de belirtilir.</t>
+
+      <!-- Messages -->
+      <t id="1001">Sahte bayrak tespit edildi</t>
+      <t id="1002">%s, %s sektöründe sahte %s bayrağı altında uçuyor.</t>
+      <t id="1003">%s, %s sektöründe sahte %s bayrağı altında uçuyor. Gerçek sahibi: %s.</t>
+      <t id="1004">Sahte bayrak altında uçan gemiler tespit edildi: %s.</t>
+      <t id="1005">Shadow Tracker takıldı.</t>
+      <t id="1020">\033RSahte bayrak\033X</t>
+      <t id="1021">\033RSahte bayrak tespit edildi\033X</t>
+      <!-- Colour wrapper: AARRGGBB, text -->
+      <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Detection (90000) -->
+      <t id="90000">Tespit</t>
+      <t id="90001">Mesaj ticker'ında bildirim göster</t>
+      <t id="90002">Gemi günlüğüne kayıt yaz</t>
+      <t id="90003">Tarama aralığı</t>
+      <t id="90004">Tarama başına bildirilen gemi sayısı \(0 = hepsi bir kerede\)</t>
+      <t id="90005">Yeniden bildirim için görüş dışında kalma süresi \(0 = asla\)</t>
+
+      <!-- Section: Shadow Tracker (90010) -->
+      <t id="90010">Shadow Tracker</t>
+      <t id="90011">Tespit edilen her gemiye Shadow Tracker tak</t>
+      <t id="90012">Tespit edilen her gemiye Shadow Tracker tak \(Shadow Tracker 8.00.04 veya daha yenisi gerekir\)</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Hata Ayıklama</t>

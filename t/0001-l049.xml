@@ -4,6 +4,37 @@
   <add sel="/language">
     <page id="1972092446" title="False Flag Detector" descr="" voice="no">
       <t id="1">False Flag Detector</t>
+      <t id="2">Meldet Schiffe unter falscher Flagge in Sichtweite Ihrer Schiffe, Stationen oder Satelliten. Wird durch Forschung freigeschaltet.</t>
+
+      <!-- Research -->
+      <t id="201">Erkennung falscher Flaggen</t>
+      <t id="202">Gleicht in Ihrem gesamten Sensornetzwerk Transpondercodes mit Hüllensignaturen ab. Schiffe unter falscher Flagge in Sichtweite Ihrer Schiffe, Stationen oder Satelliten werden gemeldet.</t>
+      <t id="211">Identifizierung des wahren Besitzers</t>
+      <t id="212">Gleicht Hüllensignaturen mit den Fraktionsregistern ab, sodass jede Meldung über eine falsche Flagge auch den wahren Besitzer des Schiffs nennt.</t>
+
+      <!-- Messages -->
+      <t id="1001">Falsche Flagge entdeckt</t>
+      <t id="1002">%s in %s fliegt unter falscher Flagge der Fraktion %s.</t>
+      <t id="1003">%s in %s fliegt unter falscher Flagge der Fraktion %s. Wahrer Besitzer: %s.</t>
+      <t id="1004">Schiffe unter falscher Flagge entdeckt: %s.</t>
+      <t id="1005">Shadow Tracker angebracht.</t>
+      <t id="1020">\033RFalsche Flagge\033X</t>
+      <t id="1021">\033RFalsche Flagge entdeckt\033X</t>
+      <!-- Colour wrapper: AARRGGBB, text -->
+      <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Detection (90000) -->
+      <t id="90000">Erkennung</t>
+      <t id="90001">Benachrichtigung im Nachrichten-Ticker anzeigen</t>
+      <t id="90002">Eintrag ins Logbuch schreiben</t>
+      <t id="90003">Scanintervall</t>
+      <t id="90004">Gemeldete Schiffe pro Scan \(0 = alle auf einmal\)</t>
+      <t id="90005">Erneut melden, wenn außer Sicht seit \(0 = nie\)</t>
+
+      <!-- Section: Shadow Tracker (90010) -->
+      <t id="90010">Shadow Tracker</t>
+      <t id="90011">Einen Shadow Tracker an jedem entdeckten Schiff anbringen</t>
+      <t id="90012">Einen Shadow Tracker an jedem entdeckten Schiff anbringen \(erfordert Shadow Tracker 8.00.04 oder neuer\)</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Debug</t>

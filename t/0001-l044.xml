@@ -14,8 +14,8 @@
 
       <!-- Messages -->
       <t id="1001">False flag detected</t>
-      <t id="1002">%s in %s is flying under a false %s flag.</t>
-      <t id="1003">%s in %s is flying under a false %s flag. True owner: %s.</t>
+      <t id="1002">%s in %s is flying under a false flag: %s.</t>
+      <t id="1003">%s in %s is flying under a false flag: %s. True owner: %s.</t>
       <t id="1004">%s ships flying under false flags detected.</t>
       <t id="1005">Shadow Tracker attached.</t>
       <t id="1020">\033RFalse flag\033X</t>
@@ -29,7 +29,7 @@
       <t id="90002">Write an entry to the logbook</t>
       <t id="90003">Scan interval</t>
       <t id="90004">Ships reported per scan \(0 = all at once\)</t>
-      <t id="90005">Report again after out of view for \(0 = never\)</t>
+      <t id="90005">Report again after being out of view for \(0 = never\)</t>
 
       <!-- Section: Shadow Tracker (90010) -->
       <t id="90010">Shadow Tracker</t>

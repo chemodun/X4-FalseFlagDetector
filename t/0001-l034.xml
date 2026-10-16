@@ -4,6 +4,37 @@
   <add sel="/language">
     <page id="1972092446" title="False Flag Detector" descr="" voice="no">
       <t id="1">False Flag Detector</t>
+      <t id="2">Informa de las naves que navegan bajo bandera falsa visibles para cualquiera de tus naves, estaciones o satélites. Se desbloquea mediante investigación.</t>
+
+      <!-- Research -->
+      <t id="201">Detección de banderas falsas</t>
+      <t id="202">Contrasta los códigos de transpondedor con las firmas de casco en toda tu red de sensores. Se informa de las naves que navegan bajo bandera falsa visibles para cualquiera de tus naves, estaciones o satélites.</t>
+      <t id="211">Identificación del verdadero propietario</t>
+      <t id="212">Coteja las firmas de casco con los registros de las facciones, de modo que cada informe de bandera falsa indique también el verdadero propietario de la nave.</t>
+
+      <!-- Messages -->
+      <t id="1001">Bandera falsa detectada</t>
+      <t id="1002">%s en %s navega bajo la falsa bandera de la facción %s.</t>
+      <t id="1003">%s en %s navega bajo la falsa bandera de la facción %s. Verdadero propietario: %s.</t>
+      <t id="1004">Naves bajo bandera falsa detectadas: %s.</t>
+      <t id="1005">Shadow Tracker colocado.</t>
+      <t id="1020">\033RBandera falsa\033X</t>
+      <t id="1021">\033RBandera falsa detectada\033X</t>
+      <!-- Colour wrapper: AARRGGBB, text -->
+      <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Detection (90000) -->
+      <t id="90000">Detección</t>
+      <t id="90001">Mostrar una notificación en el contador de mensajes</t>
+      <t id="90002">Escribir una entrada en la bitácora</t>
+      <t id="90003">Intervalo de escaneo</t>
+      <t id="90004">Naves notificadas por escaneo \(0 = todas a la vez\)</t>
+      <t id="90005">Volver a informar tras estar fuera de vista durante \(0 = nunca\)</t>
+
+      <!-- Section: Shadow Tracker (90010) -->
+      <t id="90010">Shadow Tracker</t>
+      <t id="90011">Colocar un Shadow Tracker en cada nave detectada</t>
+      <t id="90012">Colocar un Shadow Tracker en cada nave detectada \(requiere Shadow Tracker 8.00.04 o posterior\)</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Depuración</t>

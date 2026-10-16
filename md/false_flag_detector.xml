@@ -293,7 +293,7 @@
               <param name="min" value="3" />
               <param name="max" value="60" />
               <param name="step" value="1" />
-              <param name="suffix" value="' s'" />
+              <param name="suffix" value="' %s'.[{1001, 100}]" />
               <param name="textColSpan" value="6" />
               <param name="colSpan" value="6" />
               <param name="data" value="$cfg" />
@@ -316,7 +316,7 @@
               <param name="min" value="0" />
               <param name="max" value="120" />
               <param name="step" value="1" />
-              <param name="suffix" value="' min'" />
+              <param name="suffix" value="' %s'.[{1001, 103}]" />
               <param name="textColSpan" value="6" />
               <param name="colSpan" value="6" />
               <param name="data" value="$cfg" />

@@ -13,49 +13,49 @@
     description="Reports ships flying under a false flag that any of your ships, stations or satellites can see. Unlocked by research."></text>
   <!-- French -->
   <text language="33"
-    description=""></text>
+    description="Signale les vaisseaux naviguant sous faux pavillon visibles par l'un de vos vaisseaux, stations ou satellites. Débloqué par la recherche."></text>
   <!-- Spanish -->
   <text language="34"
-    description=""></text>
+    description="Informa de las naves que navegan bajo bandera falsa visibles para cualquiera de tus naves, estaciones o satélites. Se desbloquea mediante investigación."></text>
   <!-- Italian -->
   <text language="39"
-    description=""></text>
+    description="Segnala le navi sotto falsa bandiera visibili a una qualsiasi delle tue navi, stazioni o satelliti. Si sblocca con la ricerca."></text>
   <!-- Czech -->
   <text language="42"
-    description=""></text>
+    description="Hlásí lodě létající pod falešnou vlajkou, které vidí kterákoli z vašich lodí, stanic nebo satelitů. Odemyká se výzkumem."></text>
   <!-- English -->
   <text language="44"
     description="Reports ships flying under a false flag that any of your ships, stations or satellites can see. Unlocked by research."></text>
   <!-- Polish -->
   <text language="48"
-    description=""></text>
+    description="Zgłasza statki pod fałszywą banderą widoczne dla dowolnego z Twoich statków, stacji lub satelitów. Odblokowanie wymaga badań."></text>
   <!-- German -->
   <text language="49"
-    description=""></text>
+    description="Meldet Schiffe unter falscher Flagge in Sichtweite Ihrer Schiffe, Stationen oder Satelliten. Wird durch Forschung freigeschaltet."></text>
   <!-- Portuguese -->
   <text language="55"
-    description=""></text>
+    description="Informa as naves sob bandeira falsa visíveis para qualquer uma de suas naves, estações ou satélites. Desbloqueado por pesquisa."></text>
   <!-- Japanese -->
   <text language="81"
-    description=""></text>
+    description="所有する艦船、ステーション、人工衛星のいずれかが視認できる、偽旗を掲げた艦船を報告します。研究でアンロックされます。"></text>
   <!-- Korean -->
   <text language="82"
-    description=""></text>
+    description="당신의 함선, 스테이션, 인공위성 중 하나라도 볼 수 있는, 위장 깃발을 단 함선을 보고합니다. 연구를 통해 해제됩니다."></text>
   <!-- Chinese Simplified -->
   <text language="86"
-    description=""></text>
+    description="报告您任一飞船、空间站或卫星视野内悬挂伪旗的飞船。需通过研究解锁。"></text>
   <!-- Chinese Traditional -->
   <text language="88"
-    description=""></text>
+    description="報告您任一飛船、空間站或衛星視野內懸掛偽旗的飛船。需通過研究解鎖。"></text>
   <!-- Turkish -->
   <text language="90"
-    description=""></text>
+    description="Gemilerinizin, istasyonlarınızın veya uydularınızın herhangi birinin görebildiği, sahte bayrak altında uçan gemileri bildirir. Araştırma ile açılır."></text>
   <!-- Bulgarian -->
   <text language="359"
-    description=""></text>
+    description="Съобщава за кораби под фалшив флаг, видими за някой от вашите кораби, станции или сателити. Отключва се чрез проучване."></text>
   <!-- Ukrainian -->
   <text language="380"
-    description=""></text>
+    description="Повідомляє про кораблі під фальшивим прапором, які бачить будь-який ваш корабель, станція чи супутник. Відкривається дослідженням."></text>
   <dependency version="800"></dependency>
   <dependency id="ws_2042901274" optional="false" name="SirNukes Mod Support APIs" version="195"></dependency>
   <dependency id="ws_3715253556" optional="false" name="Options Helper" version="110"></dependency>

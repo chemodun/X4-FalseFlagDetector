@@ -4,6 +4,37 @@
   <add sel="/language">
     <page id="1972092446" title="False Flag Detector" descr="" voice="no">
       <t id="1">False Flag Detector</t>
+      <t id="2">Informa as naves sob bandeira falsa visíveis para qualquer uma de suas naves, estações ou satélites. Desbloqueado por pesquisa.</t>
+
+      <!-- Research -->
+      <t id="201">Detecção de Bandeira Falsa</t>
+      <t id="202">Compara os códigos de transponder com as assinaturas de casco em toda a sua rede de sensores. Naves sob bandeira falsa visíveis para qualquer uma de suas naves, estações ou satélites são reportadas.</t>
+      <t id="211">Identificação do Verdadeiro Proprietário</t>
+      <t id="212">Compara as assinaturas de casco com os registros das facções, para que cada relatório de bandeira falsa também indique o verdadeiro proprietário da nave.</t>
+
+      <!-- Messages -->
+      <t id="1001">Bandeira falsa detectada</t>
+      <t id="1002">%s em %s navega sob a falsa bandeira da facção %s.</t>
+      <t id="1003">%s em %s navega sob a falsa bandeira da facção %s. Verdadeiro proprietário: %s.</t>
+      <t id="1004">Naves sob bandeira falsa detectadas: %s.</t>
+      <t id="1005">Shadow Tracker acoplado.</t>
+      <t id="1020">\033RBandeira falsa\033X</t>
+      <t id="1021">\033RBandeira falsa detectada\033X</t>
+      <!-- Colour wrapper: AARRGGBB, text -->
+      <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Detection (90000) -->
+      <t id="90000">Detecção</t>
+      <t id="90001">Mostrar uma notificação no display de mensagens</t>
+      <t id="90002">Escrever uma entrada no diário de bordo</t>
+      <t id="90003">Intervalo de varredura</t>
+      <t id="90004">Naves reportadas por varredura \(0 = todas de uma vez\)</t>
+      <t id="90005">Reportar novamente após ficar fora de vista por \(0 = nunca\)</t>
+
+      <!-- Section: Shadow Tracker (90010) -->
+      <t id="90010">Shadow Tracker</t>
+      <t id="90011">Acoplar um Shadow Tracker a cada nave detectada</t>
+      <t id="90012">Acoplar um Shadow Tracker a cada nave detectada \(requer Shadow Tracker 8.00.04 ou mais recente\)</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Depuração</t>

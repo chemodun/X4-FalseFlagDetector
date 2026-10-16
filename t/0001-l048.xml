@@ -4,6 +4,37 @@
   <add sel="/language">
     <page id="1972092446" title="False Flag Detector" descr="" voice="no">
       <t id="1">False Flag Detector</t>
+      <t id="2">Zgłasza statki pod fałszywą banderą widoczne dla dowolnego z Twoich statków, stacji lub satelitów. Odblokowanie wymaga badań.</t>
+
+      <!-- Research -->
+      <t id="201">Wykrywanie fałszywych bander</t>
+      <t id="202">Porównuje kody transponderów z sygnaturami kadłubów w całej Twojej sieci sensorów. Statki pod fałszywą banderą widoczne dla dowolnego z Twoich statków, stacji lub satelitów są zgłaszane.</t>
+      <t id="211">Identyfikacja prawdziwego właściciela</t>
+      <t id="212">Porównuje sygnatury kadłubów z rejestrami frakcji, dzięki czemu każdy raport o fałszywej banderze podaje też prawdziwego właściciela statku.</t>
+
+      <!-- Messages -->
+      <t id="1001">Wykryto fałszywą banderę</t>
+      <t id="1002">%s w sektorze %s lata pod fałszywą banderą frakcji %s.</t>
+      <t id="1003">%s w sektorze %s lata pod fałszywą banderą frakcji %s. Prawdziwy właściciel: %s.</t>
+      <t id="1004">Wykryte statki pod fałszywą banderą: %s.</t>
+      <t id="1005">Przyczepiono Shadow Tracker.</t>
+      <t id="1020">\033RFałszywa bandera\033X</t>
+      <t id="1021">\033RWykryto fałszywą banderę\033X</t>
+      <!-- Colour wrapper: AARRGGBB, text -->
+      <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Detection (90000) -->
+      <t id="90000">Wykrywanie</t>
+      <t id="90001">Pokazuj powiadomienie na pasku wiadomości</t>
+      <t id="90002">Dodawaj wpis do dziennika</t>
+      <t id="90003">Interwał skanowania</t>
+      <t id="90004">Statki zgłaszane na skanowanie \(0 = wszystkie naraz\)</t>
+      <t id="90005">Zgłaszaj ponownie po zniknięciu z pola widzenia na \(0 = nigdy\)</t>
+
+      <!-- Section: Shadow Tracker (90010) -->
+      <t id="90010">Shadow Tracker</t>
+      <t id="90011">Przyczepiaj Shadow Tracker do każdego wykrytego statku</t>
+      <t id="90012">Przyczepiaj Shadow Tracker do każdego wykrytego statku \(wymaga Shadow Tracker w wersji 8.00.04 lub nowszej\)</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Debugowanie</t>

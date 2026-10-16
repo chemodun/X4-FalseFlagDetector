@@ -4,6 +4,37 @@
   <add sel="/language">
     <page id="1972092446" title="False Flag Detector" descr="" voice="no">
       <t id="1">False Flag Detector</t>
+      <t id="2">Signale les vaisseaux naviguant sous faux pavillon visibles par l'un de vos vaisseaux, stations ou satellites. Débloqué par la recherche.</t>
+
+      <!-- Research -->
+      <t id="201">Détection de faux pavillons</t>
+      <t id="202">Compare les codes de transpondeur aux signatures de coque sur l'ensemble de votre réseau de capteurs. Les vaisseaux naviguant sous faux pavillon visibles par l'un de vos vaisseaux, stations ou satellites sont signalés.</t>
+      <t id="211">Identification du véritable propriétaire</t>
+      <t id="212">Compare les signatures de coque aux registres des factions, afin que chaque signalement de faux pavillon indique aussi le véritable propriétaire du vaisseau.</t>
+
+      <!-- Messages -->
+      <t id="1001">Faux pavillon détecté</t>
+      <t id="1002">%s dans %s navigue sous le faux pavillon de la faction %s.</t>
+      <t id="1003">%s dans %s navigue sous le faux pavillon de la faction %s. Véritable propriétaire : %s.</t>
+      <t id="1004">Vaisseaux sous faux pavillon détectés : %s.</t>
+      <t id="1005">Shadow Tracker fixé.</t>
+      <t id="1020">\033RFaux pavillon\033X</t>
+      <t id="1021">\033RFaux pavillon détecté\033X</t>
+      <!-- Colour wrapper: AARRGGBB, text -->
+      <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Detection (90000) -->
+      <t id="90000">Détection</t>
+      <t id="90001">Afficher une notification dans le prompteur de messages</t>
+      <t id="90002">Écrire une entrée dans le journal de bord</t>
+      <t id="90003">Intervalle de scan</t>
+      <t id="90004">Vaisseaux signalés par scan \(0 = tous à la fois\)</t>
+      <t id="90005">Signaler à nouveau après avoir été hors de vue pendant \(0 = jamais\)</t>
+
+      <!-- Section: Shadow Tracker (90010) -->
+      <t id="90010">Shadow Tracker</t>
+      <t id="90011">Fixer un Shadow Tracker sur chaque vaisseau détecté</t>
+      <t id="90012">Fixer un Shadow Tracker sur chaque vaisseau détecté \(nécessite Shadow Tracker 8.00.04 ou plus récent\)</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Débogage</t>

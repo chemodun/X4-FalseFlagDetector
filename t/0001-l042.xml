@@ -4,6 +4,37 @@
   <add sel="/language">
     <page id="1972092446" title="False Flag Detector" descr="" voice="no">
       <t id="1">False Flag Detector</t>
+      <t id="2">Hlásí lodě létající pod falešnou vlajkou, které vidí kterákoli z vašich lodí, stanic nebo satelitů. Odemyká se výzkumem.</t>
+
+      <!-- Research -->
+      <t id="201">Detekce falešné vlajky</t>
+      <t id="202">Porovnává kódy transpondérů se signaturami trupů v celé vaší senzorové síti. Lodě létající pod falešnou vlajkou, které vidí kterákoli z vašich lodí, stanic nebo satelitů, jsou hlášeny.</t>
+      <t id="211">Identifikace skutečného majitele</t>
+      <t id="212">Porovnává signatury trupů s registry frakcí, takže každé hlášení o falešné vlajce uvádí i skutečného majitele lodi.</t>
+
+      <!-- Messages -->
+      <t id="1001">Detekována falešná vlajka</t>
+      <t id="1002">%s v sektoru %s létá pod falešnou vlajkou frakce %s.</t>
+      <t id="1003">%s v sektoru %s létá pod falešnou vlajkou frakce %s. Skutečný majitel: %s.</t>
+      <t id="1004">Detekované lodě pod falešnou vlajkou: %s.</t>
+      <t id="1005">Shadow Tracker připojen.</t>
+      <t id="1020">\033RFalešná vlajka\033X</t>
+      <t id="1021">\033RDetekována falešná vlajka\033X</t>
+      <!-- Colour wrapper: AARRGGBB, text -->
+      <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Detection (90000) -->
+      <t id="90000">Detekce</t>
+      <t id="90001">Zobrazit oznámení v tickeru zpráv</t>
+      <t id="90002">Zapsat záznam do lodního deníku</t>
+      <t id="90003">Interval skenování</t>
+      <t id="90004">Počet hlášených lodí na jedno skenování \(0 = všechny najednou\)</t>
+      <t id="90005">Doba mimo dohled před opětovným hlášením \(0 = nikdy\)</t>
+
+      <!-- Section: Shadow Tracker (90010) -->
+      <t id="90010">Shadow Tracker</t>
+      <t id="90011">Připojit Shadow Tracker ke každé detekované lodi</t>
+      <t id="90012">Připojit Shadow Tracker ke každé detekované lodi \(vyžaduje Shadow Tracker 8.00.04 nebo novější\)</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Ladění</t>
