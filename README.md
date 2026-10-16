@@ -34,8 +34,8 @@ Pirates and smugglers often fly under someone else's flag: a Scale Plate trader 
 
 ## Installation
 
-You can download the latest version via Steam client - [False Flag Detector](https://steamcommunity.com/sharedfiles/filedetails/?id=)
-Or you can do it via the Nexus Mods - [False Flag Detector](https://www.nexusmods.com/x4foundations/mods/)
+You can download the latest version via Steam client - [False Flag Detector](https://steamcommunity.com/sharedfiles/filedetails/?id=3820999285)
+Or you can do it via the Nexus Mods - [False Flag Detector](https://www.nexusmods.com/x4foundations/mods/2462)
 
 ## Save state
 
@@ -87,7 +87,7 @@ An options page is available via the `Extension Options` menu:
 
 ## Changelog
 
-### [1.00] - 2026-10-??
+### [1.00] - 2026-10-16
 
 - **Added**
   - Initial public version
