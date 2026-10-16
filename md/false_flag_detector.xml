@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mdscript name="FalseFlagDetector" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="md.xsd">
+
+  <cues>
+    <library name="ReadDebugChances" purpose="include_actions">
+      <actions>
+        <set_value name="$ffdDebugLevel" exact="if @player.entity.$FalseFlagDetectorConfig.$debugLevel != null
+          then player.entity.$FalseFlagDetectorConfig.$debugLevel else 'none'" />
+        <set_value name="$debugChance" exact="if @$ffdDebugLevel == null or @$ffdDebugLevel == 'none' then 0 else 100" />
+        <set_value name="$traceChance" exact="if @$ffdDebugLevel == 'trace' then 100 else 0" />
+        <remove_value name="$ffdDebugLevel" />
+      </actions>
+    </library>
+
+    <library name="ClearDebugChances" purpose="include_actions">
+      <actions>
+        <remove_value name="$debugChance" />
+        <remove_value name="$traceChance" />
+      </actions>
+    </library>
+
+    <library name="Ensure_Config" purpose="include_actions">
+      <actions>
+        <set_value name="$cfg" exact="table[
+          $debugLevel = 'none',
+          $notifyTicker = 1,
+          $notifyLogbook = 1,
+          $scanInterval = 5,
+          $maxPerScan = 3,
+          $reappearMinutes = 0,
+          $useShadowTracker = 0,
+        ]" />
+        <do_if value="@player.entity.$FalseFlagDetectorConfig == null">
+          <set_value name="player.entity.$FalseFlagDetectorConfig" exact="$cfg" />
+        </do_if>
+        <do_else>
+          <do_for_each name="$key" in="$cfg">
+            <do_if value="not player.entity.$FalseFlagDetectorConfig.{$key}?">
+              <set_value name="player.entity.$FalseFlagDetectorConfig.{$key}" exact="$cfg.{$key}" />
+            </do_if>
+          </do_for_each>
+        </do_else>
+        <remove_value name="$cfg" />
+      </actions>
+    </library>
+
+    <!-- The research menu lists only researchables known to the player -->
+    <library name="Add_Researchables" purpose="include_actions">
+      <actions>
+        <add_encyclopedia_entry type="researchables" item="'research_false_flag_detector_detection'" />
+        <add_encyclopedia_entry type="researchables" item="'research_false_flag_detector_identification'" />
+      </actions>
+    </library>
+
+    <!-- Colours come from the Lua side (FalseFlagDetector.PublishColors); plain text until they arrive -->
+    <library name="Colored" purpose="run_actions">
+      <params>
+        <param name="text" />
+        <param name="faction" />
+      </params>
+      <actions>
+        <set_value name="$hex" exact="if $faction then @player.entity.$FalseFlagDetectorColors.{'$' + $faction.id} else null" />
+        <return value="if $hex then {1972092446, 1010}.[$hex, $text] else $text" />
+      </actions>
+    </library>
+
+    <library name="Report_Text" purpose="run_actions">
+      <params>
+        <param name="ship" />
+        <param name="identify" />
+      </params>
+      <actions>
+        <run_actions ref="Colored" result="$shipText">
+          <param name="text" value="'%s (%s)'.[$ship.name, $ship.idcode]" />
+          <param name="faction" value="$ship.coverowner" />
+        </run_actions>
+        <run_actions ref="Colored" result="$sectorText">
+          <param name="text" value="@$ship.sector.knownname" />
+          <param name="faction" value="@$ship.sector.owner" />
+        </run_actions>
+        <run_actions ref="Colored" result="$coverText">
+          <param name="text" value="$ship.coverowner.name" />
+          <param name="faction" value="$ship.coverowner" />
+        </run_actions>
+        <do_if value="$identify">
+          <run_actions ref="Colored" result="$ownerText">
+            <param name="text" value="$ship.trueowner.name" />
+            <param name="faction" value="$ship.trueowner" />
+          </run_actions>
+          <return value="{1972092446, 1003}.[$shipText, $sectorText, $coverText, $ownerText]" />
+        </do_if>
+        <return value="{1972092446, 1002}.[$shipText, $sectorText, $coverText]" />
+      </actions>
+    </library>
+
+    <!-- md.$CoveredObjects is vanilla's registry of covered objects (md/cover.xml) -->
+    <library name="Scan" purpose="include_actions">
+      <actions>
+        <include_actions ref="ReadDebugChances" />
+        <set_value name="$cfg" exact="player.entity.$FalseFlagDetectorConfig" />
+        <set_value name="$identify" exact="ware.research_false_flag_detector_identification.research.unlocked" />
+        <set_value name="$useTracker" exact="(@$cfg.$useShadowTracker == 1 or @$cfg.$useShadowTracker == true) and @md.Shadow_Tracker_Interface.Track_Object.exists" />
+        <set_value name="$maxPerScan" exact="if @$cfg.$maxPerScan gt 0 then $cfg.$maxPerScan else 0" />
+        <set_value name="$reappearAfter" exact="if @$cfg.$reappearMinutes gt 0 then $cfg.$reappearMinutes * 60s else 0s" />
+        <set_value name="$found" exact="[]" />
+        <!-- ship -> table[$cover = flag at the last report, $lastSeen = last scan it was in view] -->
+        <do_if value="typeof $Reported != datatype.table">
+          <set_value name="$Reported" exact="table[]" />
+        </do_if>
+
+        <do_for_each name="$ship" in="$Reported.keys.list">
+          <do_if value="not $ship.isoperational or not @$ship.coverowner">
+            <debug_text text="'FalseFlagDetector: %s is no longer covered'.[@$ship.debugname]" chance="$traceChance" />
+            <remove_value name="$Reported.{$ship}" />
+          </do_if>
+        </do_for_each>
+
+        <!-- Vanilla swaps one cover for another in the same moment, so a changed flag is compared, not only a dropped one -->
+        <do_for_each name="$ship" in="md.$CoveredObjects">
+          <do_if value="$ship.isoperational and $ship.isclass.ship and $ship.type != shiptype.lasertower and @$ship.coverowner and $ship.trueowner != faction.player and $ship.coverowner != $ship.trueowner and $ship.isinliveview">
+            <set_value name="$entry" exact="@$Reported.{$ship}" />
+            <!-- A Shadow Tracker keeps the ship on the map, so it never reappears -->
+            <do_if value="$entry == null or $entry.$cover != $ship.coverowner or ($reappearAfter gt 0s and player.age - $entry.$lastSeen ge $reappearAfter and not @player.entity.$shadowTracker.$installed.indexof.{$ship})">
+              <!-- Over the per-scan limit the entry stays untouched, so a later scan reports it -->
+              <do_if value="$maxPerScan == 0 or $found.count lt $maxPerScan">
+                <set_value name="$Reported.{$ship}" exact="table[$cover = $ship.coverowner, $lastSeen = player.age]" />
+                <append_to_list name="$found" exact="$ship" />
+              </do_if>
+            </do_if>
+            <do_else>
+              <set_value name="$entry.$lastSeen" exact="player.age" />
+            </do_else>
+          </do_if>
+        </do_for_each>
+        <remove_value name="$entry" />
+        <debug_text text="'FalseFlagDetector: scan, %s covered, %s reported, %s new'.[md.$CoveredObjects.count, $Reported.keys.count, $found.count]" chance="$traceChance" />
+
+        <do_for_each name="$ship" in="$found">
+          <set_value name="$trackerAttached" exact="false" />
+          <do_if value="$useTracker and not @player.entity.$shadowTracker.$installed.indexof.{$ship}">
+            <signal_cue_instantly cue="md.Shadow_Tracker_Interface.Track_Object" param="table[$object = $ship]" />
+            <set_value name="$trackerAttached" exact="@player.entity.$shadowTracker.$installed.indexof.{$ship} gt 0" />
+          </do_if>
+          <run_actions ref="Report_Text" result="$text">
+            <param name="ship" value="$ship" />
+            <param name="identify" value="$identify" />
+          </run_actions>
+          <do_if value="$trackerAttached">
+            <set_value name="$text" exact="$text + ' ' + {1972092446, 1005}" />
+          </do_if>
+          <debug_text text="'FalseFlagDetector: %s covered as %s, true owner %s, tracker attached %s'.[$ship.debugname, $ship.coverowner, $ship.trueowner, $trackerAttached]" chance="$debugChance" />
+          <do_if value="@$cfg.$notifyLogbook == 1 or @$cfg.$notifyLogbook == true">
+            <write_to_logbook category="alerts" title="{1972092446, 1021}" text="$text" interaction="showonmap" object="$ship" />
+          </do_if>
+        </do_for_each>
+
+        <do_if value="$found.count gt 0 and (@$cfg.$notifyTicker == 1 or @$cfg.$notifyTicker == true)">
+          <do_if value="$found.count == 1">
+            <show_notification text="'%s\n%s'.[{1972092446, 1001}, $text]" timeout="10s" priority="2" sound="notification_warning" />
+          </do_if>
+          <do_else>
+            <show_notification text="'%s\n%s'.[{1972092446, 1001}, {1972092446, 1004}.[$found.count]]" timeout="10s" priority="2" sound="notification_warning" />
+          </do_else>
+        </do_if>
+
+        <remove_value name="$ship" />
+        <remove_value name="$text" />
+        <remove_value name="$trackerAttached" />
+        <remove_value name="$found" />
+        <remove_value name="$maxPerScan" />
+        <remove_value name="$reappearAfter" />
+        <remove_value name="$useTracker" />
+        <remove_value name="$identify" />
+        <remove_value name="$cfg" />
+        <include_actions ref="ClearDebugChances" />
+      </actions>
+    </library>
+
+    <cue name="Init" version="1">
+      <actions>
+        <include_actions ref="Ensure_Config" />
+        <include_actions ref="Add_Researchables" />
+        <set_value name="$Reported" exact="table[]" />
+        <raise_lua_event name="'FalseFlagDetector.PublishColors'" />
+      </actions>
+      <cues>
+
+        <cue name="On_Game_Loaded" instantiate="true" version="1">
+          <conditions>
+            <event_game_loaded />
+          </conditions>
+          <actions>
+            <include_actions ref="Ensure_Config" />
+            <include_actions ref="Add_Researchables" />
+            <raise_lua_event name="'FalseFlagDetector.PublishColors'" />
+          </actions>
+        </cue>
+
+        <cue name="Scan_Loop" version="1">
+          <delay exact="(if @player.entity.$FalseFlagDetectorConfig.$scanInterval ge 3 then player.entity.$FalseFlagDetectorConfig.$scanInterval else 3) * 1s" />
+          <actions>
+            <do_if value="ware.research_false_flag_detector_detection.research.unlocked and md.$CoveredObjects?">
+              <include_actions ref="Scan" />
+            </do_if>
+            <reset_cue cue="this" />
+          </actions>
+        </cue>
+
+        <!-- Information only: no callback, the menu stays open on a click -->
+        <cue name="Add_Menu_Item" instantiate="true" version="1">
+          <conditions>
+            <event_cue_signalled cue="md.Interact_Menu_API.Get_Actions" />
+            <check_value value="ware.research_false_flag_detector_detection.research.unlocked" />
+            <check_value value="@event.param.$object.isclass.ship and @event.param.$object.coverowner" />
+          </conditions>
+          <actions>
+            <set_value name="$ship" exact="event.param.$object" />
+            <do_if value="$ship.trueowner != faction.player and $ship.coverowner != $ship.trueowner and ($ship.isinliveview or @player.entity.$shadowTracker.$installed.indexof.{$ship})">
+              <set_value name="$identify" exact="ware.research_false_flag_detector_identification.research.unlocked" />
+              <run_actions ref="Report_Text" result="$report">
+                <param name="ship" value="$ship" />
+                <param name="identify" value="$identify" />
+              </run_actions>
+              <set_value name="$action" exact="table[
+                $id        = 'false_flag_detector_info',
+                $section   = 'main',
+                $text      = {1972092446, 1020},
+                $mouseover = $report,
+                $keep_open = true,
+              ]" />
+              <do_if value="$identify">
+                <run_actions ref="Colored" result="$action.$text2">
+                  <param name="text" value="$ship.trueowner.name" />
+                  <param name="faction" value="$ship.trueowner" />
+                </run_actions>
+              </do_if>
+              <signal_cue_instantly cue="md.Interact_Menu_API.Add_Action" param="$action" />
+              <remove_value name="$action" />
+              <remove_value name="$report" />
+              <remove_value name="$identify" />
+            </do_if>
+            <remove_value name="$ship" />
+          </actions>
+        </cue>
+
+        <cue name="Register_Menu" instantiate="true" version="1">
+          <conditions>
+            <event_cue_signalled cue="@md.Simple_Menu_API.Reloaded" />
+            <check_value value="@md.Options_Helper.Add_Dropdown.exists" />
+          </conditions>
+          <actions>
+            <signal_cue_instantly cue="md.Simple_Menu_API.Register_Options_Menu"
+              param="table[
+                $id      = 'false_flag_detector_options_menu',
+                $columns = 12,
+                $title   = {1972092446, 1},
+                $onOpen  = Options_Menu,
+              ]" />
+          </actions>
+        </cue>
+
+        <cue name="Options_Menu" instantiate="true" version="1">
+          <conditions>
+            <event_cue_signalled />
+          </conditions>
+          <actions>
+            <include_actions ref="Ensure_Config" />
+            <set_value name="$cfg" exact="player.entity.$FalseFlagDetectorConfig" />
+            <set_value name="$hasTracker" exact="@md.Shadow_Tracker_Interface.Track_Object.exists" />
+
+            <run_actions ref="md.Options_Helper.Add_Title_Row">
+              <param name="title" value="{1972092446, 90000}" />
+            </run_actions>
+            <run_actions ref="md.Options_Helper.Add_Checkbox">
+              <param name="id" value="'notifyTicker'" />
+              <param name="col" value="1" />
+              <param name="textColSpan" value="11" />
+              <param name="text" value="{1972092446, 90001}" />
+              <param name="data" value="$cfg" />
+              <param name="handle" value="Handle_Checkbox_Changed" />
+            </run_actions>
+            <run_actions ref="md.Options_Helper.Add_Checkbox">
+              <param name="id" value="'notifyLogbook'" />
+              <param name="col" value="1" />
+              <param name="textColSpan" value="11" />
+              <param name="text" value="{1972092446, 90002}" />
+              <param name="data" value="$cfg" />
+              <param name="handle" value="Handle_Checkbox_Changed" />
+            </run_actions>
+            <run_actions ref="md.Options_Helper.Add_Slider">
+              <param name="id" value="'scanInterval'" />
+              <param name="text" value="{1972092446, 90003}" />
+              <param name="min" value="3" />
+              <param name="max" value="60" />
+              <param name="step" value="1" />
+              <param name="suffix" value="' s'" />
+              <param name="textColSpan" value="6" />
+              <param name="colSpan" value="6" />
+              <param name="data" value="$cfg" />
+              <param name="handle" value="Handle_Slider_Changed" />
+            </run_actions>
+            <run_actions ref="md.Options_Helper.Add_Slider">
+              <param name="id" value="'maxPerScan'" />
+              <param name="text" value="{1972092446, 90004}" />
+              <param name="min" value="0" />
+              <param name="max" value="20" />
+              <param name="step" value="1" />
+              <param name="textColSpan" value="6" />
+              <param name="colSpan" value="6" />
+              <param name="data" value="$cfg" />
+              <param name="handle" value="Handle_Slider_Changed" />
+            </run_actions>
+            <run_actions ref="md.Options_Helper.Add_Slider">
+              <param name="id" value="'reappearMinutes'" />
+              <param name="text" value="{1972092446, 90005}" />
+              <param name="min" value="0" />
+              <param name="max" value="120" />
+              <param name="step" value="1" />
+              <param name="suffix" value="' min'" />
+              <param name="textColSpan" value="6" />
+              <param name="colSpan" value="6" />
+              <param name="data" value="$cfg" />
+              <param name="handle" value="Handle_Slider_Changed" />
+            </run_actions>
+
+            <run_actions ref="md.Options_Helper.Add_Title_Row">
+              <param name="title" value="{1972092446, 90010}" />
+            </run_actions>
+            <run_actions ref="md.Options_Helper.Add_Checkbox">
+              <param name="id" value="'useShadowTracker'" />
+              <param name="col" value="1" />
+              <param name="textColSpan" value="11" />
+              <param name="text" value="if $hasTracker then {1972092446, 90011} else {1972092446, 90012}" />
+              <param name="data" value="$cfg" />
+              <param name="active" value="$hasTracker" />
+              <param name="handle" value="Handle_Checkbox_Changed" />
+            </run_actions>
+
+            <run_actions ref="md.Options_Helper.Add_Title_Row">
+              <param name="title" value="{1972092446, 90900}" />
+            </run_actions>
+            <set_value name="$debugLevelOptions" exact="[
+              table[$text = {1972092446, 90911}, $value = 'none'],
+              table[$text = {1972092446, 90912}, $value = 'debug'],
+              table[$text = {1972092446, 90913}, $value = 'trace']
+            ]" />
+            <set_value name="$debugLevelIndexes" exact="['none', 'debug', 'trace']" />
+            <set_value name="$debugLevelCurrentIndex" exact="$debugLevelIndexes.indexof.{@$cfg.$debugLevel}" />
+            <do_if value="$debugLevelCurrentIndex == 0">
+              <set_value name="$debugLevelCurrentIndex" exact="1" />
+            </do_if>
+            <run_actions ref="md.Options_Helper.Add_Dropdown">
+              <param name="id" value="'debugLevel'" />
+              <param name="options" value="$debugLevelOptions" />
+              <param name="currentIndex" value="$debugLevelCurrentIndex" />
+              <param name="col" value="1" />
+              <param name="textColSpan" value="6" />
+              <param name="text" value="{1972092446, 90910}" />
+              <param name="dropdownColSpan" value="6" />
+              <param name="handle" value="Handle_Dropdown_Changed" />
+            </run_actions>
+
+            <remove_value name="$debugLevelOptions" />
+            <remove_value name="$debugLevelIndexes" />
+            <remove_value name="$debugLevelCurrentIndex" />
+            <remove_value name="$hasTracker" />
+            <remove_value name="$cfg" />
+          </actions>
+        </cue>
+
+        <cue name="Handle_Checkbox_Changed" instantiate="true" version="1">
+          <conditions>
+            <event_cue_signalled />
+          </conditions>
+          <actions>
+            <set_value name="$resultTable" exact="player.entity.$FalseFlagDetectorConfig" />
+            <include_actions ref="md.Options_Helper.Process_Checkbox_Changed" />
+            <remove_value name="$resultTable" />
+            <include_actions ref="ReadDebugChances" />
+            <debug_text text="'FalseFlagDetector: Options: %s set to %s'.[event.param.$echo.$valueId, @event.param.$checked]" chance="$debugChance" />
+            <include_actions ref="ClearDebugChances" />
+          </actions>
+        </cue>
+
+        <cue name="Handle_Slider_Changed" instantiate="true" version="1">
+          <conditions>
+            <event_cue_signalled />
+          </conditions>
+          <actions>
+            <set_value name="$resultTable" exact="player.entity.$FalseFlagDetectorConfig" />
+            <include_actions ref="md.Options_Helper.Process_Slider_Changed" />
+            <remove_value name="$resultTable" />
+            <reset_cue cue="Scan_Loop" />
+            <include_actions ref="ReadDebugChances" />
+            <debug_text text="'FalseFlagDetector: Options: %s set to %s'.[event.param.$echo.$valueId, @event.param.$value]" chance="$debugChance" />
+            <include_actions ref="ClearDebugChances" />
+          </actions>
+        </cue>
+
+        <cue name="Handle_Dropdown_Changed" instantiate="true" version="1">
+          <conditions>
+            <event_cue_signalled />
+          </conditions>
+          <actions>
+            <set_value name="$resultTable" exact="player.entity.$FalseFlagDetectorConfig" />
+            <include_actions ref="md.Options_Helper.Process_Dropdown_Changed" />
+            <remove_value name="$resultTable" />
+            <raise_lua_event name="'FalseFlagDetector.ConfigChanged'" />
+            <include_actions ref="ReadDebugChances" />
+            <debug_text text="'FalseFlagDetector: Options: %s set to %s'.[event.param.$echo.$valueId, @event.param.$option.$value]" chance="$debugChance" />
+            <include_actions ref="ClearDebugChances" />
+          </actions>
+        </cue>
+
+      </cues>
+    </cue>
+  </cues>
+
+</mdscript>

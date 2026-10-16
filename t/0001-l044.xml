@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- False Flag Detector - English text, page 1972092446 -->
+<diff>
+  <add sel="/language">
+    <page id="1972092446" title="False Flag Detector" descr="" voice="no">
+      <t id="1">False Flag Detector</t>
+      <t id="2">Reports ships flying under a false flag that any of your ships, stations or satellites can see. Unlocked by research.</t>
+
+      <!-- Research -->
+      <t id="201">False Flag Detection</t>
+      <t id="202">Cross-checks transponder codes against hull signatures across your sensor network. Ships flying under a false flag that any of your ships, stations or satellites can see are reported.</t>
+      <t id="211">True Owner Identification</t>
+      <t id="212">Matches hull signatures against faction registries, so every false flag report also names the true owner of the ship.</t>
+
+      <!-- Messages -->
+      <t id="1001">False flag detected</t>
+      <t id="1002">%s in %s is flying under a false %s flag.</t>
+      <t id="1003">%s in %s is flying under a false %s flag. True owner: %s.</t>
+      <t id="1004">%s ships flying under false flags detected.</t>
+      <t id="1005">Shadow Tracker attached.</t>
+      <t id="1020">\033RFalse flag\033X</t>
+      <t id="1021">\033RFalse flag detected\033X</t>
+      <!-- Colour wrapper: AARRGGBB, text -->
+      <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Detection (90000) -->
+      <t id="90000">Detection</t>
+      <t id="90001">Show a notification in the message ticker</t>
+      <t id="90002">Write an entry to the logbook</t>
+      <t id="90003">Scan interval</t>
+      <t id="90004">Ships reported per scan \(0 = all at once\)</t>
+      <t id="90005">Report again after out of view for \(0 = never\)</t>
+
+      <!-- Section: Shadow Tracker (90010) -->
+      <t id="90010">Shadow Tracker</t>
+      <t id="90011">Attach a Shadow Tracker to every detected ship</t>
+      <t id="90012">Attach a Shadow Tracker to every detected ship \(needs Shadow Tracker 8.00.04 or newer\)</t>
+
+      <!-- Section: Debug (90900) -->
+      <t id="90900">Debug</t>
+      <t id="90910">Debug Level</t>
+      <t id="90911">None</t>
+      <t id="90912">Debug</t>
+      <t id="90913">Trace</t>
+    </page>
+  </add>
+</diff>
