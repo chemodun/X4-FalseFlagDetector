@@ -1,0 +1,104 @@
+[size=4][u]False Flag Detector[/u][/size]
+
+Pirates and smugglers often fly under someone else's flag: a Scale Plate trader entering Teladi space shows up as a Teladi ship, and nothing on the map tells you otherwise. This extension adds two research projects that let your sensor network spot them.
+
+[size=3][u][b]Features[/b][/u][/size]
+[list]
+[*] [b]False Flag Detection[/b] research: any ship flying under a false flag that one of your ships, stations or satellites can see is reported, with its name, ID, sector and the flag it shows.
+[*] [b]True Owner Identification[/b] research: a more expensive follow-up; every report also names the true owner of the ship.
+[*] [b]Context menu[/b]: right-click a detected ship to see a [b]False flag[/b] line; with True Owner Identification researched, the true owner is shown beside it in its faction colour. Hover over it for the full report.
+[*] [b]Notifications[/b]: a warning in the ticker and an entry in the logbook's Alerts, each can be switched off. For 10 minutes after the report the logbook entry shows the ship on the map; a ship carrying a Shadow Tracker keeps that button.
+[*] [b]Shadow Tracker[/b]: with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3676424693]Shadow Tracker[/url] installed and the option on, a Shadow Tracker device is attached to every detected ship while you have free devices in your inventory.
+[/list]
+[size=3][u][b]Limitations[/b][/u][/size]
+[list]
+[*] A ship is reported once per disguise: again when it switches to another false flag, or drops its flag and later takes one again. A ship that leaves your sensor coverage and comes back under the same flag is reported again only when [b]Report again after being out of view for[/b] is set.
+[*] Detection only names the ship. To expose it in the game, scan it as usual: a finished scan strips the false flag, and the local forces can respond.
+[*] Your own ships flying under a cover faction are never reported.
+[/list]
+[size=3][u][b]Requirements[/b][/u][/size]
+[list]
+[*] [b]X4: Foundations[/b]: Version [b]8.00[/b] or higher.
+[*] [b]Mod Support APIs[/b]: Version [b]1.95[/b] or higher by [url=https://next.nexusmods.com/profile/sirnukes?gameId=2659]SirNukes[/url].
+[list]
+[*] Available on Steam: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2042901274]SirNukes Mod Support APIs[/url]
+[*] Available on Nexus Mods: [url=https://www.nexusmods.com/x4foundations/mods/503]Mod Support APIs[/url]
+[/list]
+[*] [b]Options Helper[/b]: Version [b]1.10[/b] or higher by [url=https://next.nexusmods.com/profile/ChemODun/mods?gameId=2659]Chem O`Dun[/url].
+[list]
+[*] Available on Steam: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3715253556]Options Helper[/url]
+[*] Available on Nexus Mods: [url=https://www.nexusmods.com/x4foundations/mods/2155]Options Helper[/url]
+[/list]
+[*] [b]Print Extension List[/b]: Version [b]1.00[/b] or higher by [url=https://next.nexusmods.com/profile/ChemODun/mods?gameId=2659]Chem O`Dun[/url].
+[list]
+[*] Available on Steam: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3770927339]Print Extension List[/url]
+[*] Available on Nexus Mods: [url=https://www.nexusmods.com/x4foundations/mods/2191]Print Extension List[/url]
+[/list]
+[*] [b]Shadow Tracker[/b] (optional): Version [b]8.00.04[/b] or higher by [url=https://next.nexusmods.com/profile/ChemODun/mods?gameId=2659]Chem O`Dun[/url].
+[list]
+[*] Available on Steam: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3676424693]Shadow Tracker[/url]
+[*] Available on Nexus Mods: [url=https://www.nexusmods.com/x4foundations/mods/2000]Shadow Tracker[/url]
+[/list]
+[/list]
+[size=3][u][b]Installation[/b][/u][/size]
+
+You can download the latest version via Steam client - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=]False Flag Detector[/url]
+Or you can do it via the Nexus Mods - [url=https://www.nexusmods.com/x4foundations/mods/]False Flag Detector[/url]
+
+[size=3][u][b]Save state[/b][/u][/size]
+
+[b]No[/b] (removing the extension does not break saves).
+
+[size=3][u][b]Usage[/b][/u][/size]
+
+Research [b]False Flag Detection[/b] at your headquarters. From then on the detector checks every few seconds which ships under a false flag are seen by any of your assets, and reports the new ones. Research [b]True Owner Identification[/b] afterwards to see who really owns them.
+
+[img]https://raw.githubusercontent.com/chemodun/X4-FalseFlagDetector/refs/heads/main/docs/images/research_detection.png[/img]
+
+[img]https://raw.githubusercontent.com/chemodun/X4-FalseFlagDetector/refs/heads/main/docs/images/research_identification.png[/img]
+
+Each detected ship is reported in the message ticker:
+
+[img]https://raw.githubusercontent.com/chemodun/X4-FalseFlagDetector/refs/heads/main/docs/images/ticker.png[/img]
+
+and in the Alerts section of the logbook, with a button to show the ship on the map. The button disappears 10 minutes after the report, so an old entry does not keep revealing where the ship is now; it stays for a ship that carries a Shadow Tracker:
+
+[img]https://raw.githubusercontent.com/chemodun/X4-FalseFlagDetector/refs/heads/main/docs/images/logbook.png[/img]
+
+While a detected ship is in view or carries a Shadow Tracker, its context menu carries a [b]False flag[/b] line with the true owner beside it; hover over the line for the full report:
+
+[img]https://raw.githubusercontent.com/chemodun/X4-FalseFlagDetector/refs/heads/main/docs/images/context_menu.png[/img]
+
+[size=3][u][b]Options[/b][/u][/size]
+
+An options page is available via the [b]Extension Options[/b] menu:
+
+[img]https://raw.githubusercontent.com/chemodun/X4-FalseFlagDetector/refs/heads/main/docs/images/options.png[/img]
+[list]
+[*] [b]Show a notification in the message ticker[/b] - on by default.
+[*] [b]Write an entry to the logbook[/b] - on by default.
+[*] [b]Scan interval[/b] - how often the detector checks, from 3 to 60 seconds - 5 by default.
+[*] [b]Ships reported per scan[/b] - at most this many new ships are reported by one scan; the others wait for the next scans, so a sensor network that suddenly sees many disguised ships does not flood the logbook. 0 reports all of them at once - 3 by default.
+[*] [b]Report again after being out of view for[/b] - a ship that comes back into view under the same false flag after at least this many minutes out of view is reported again, from 0 to 120 minutes; 0 never reports it again - 0 by default.
+[*] [b]Attach a Shadow Tracker to every detected ship[/b] - off by default; available only with Shadow Tracker 8.00.04 or newer, which lets other extensions request tracking.
+[*] [b]Debug Level[/b] - None, Debug or Trace; writes detailed lines to the game log.
+[/list]
+[size=3][u][b]Credits[/b][/u][/size]
+[list]
+[*] Author: Chem O`Dun, on [url=https://next.nexusmods.com/profile/ChemODun/mods?gameId=2659]Nexus Mods[/url] and [url=https://steamcommunity.com/id/chemodun/myworkshopfiles/?appid=392160]Steam Workshop[/url]
+[*] [i]"X4: Foundations"[/i] is a trademark of [url=https://www.egosoft.com]Egosoft[/url].
+[/list]
+[size=3][u][b]Acknowledgements[/b][/u][/size]
+[list]
+[*] [url=https://www.egosoft.com]EGOSOFT[/url] for the X series.
+[*] [url=https://next.nexusmods.com/profile/sirnukes?gameId=2659]SirNukes[/url] for the Mod Support APIs.
+[/list]
+[size=3][u][b]Changelog[/b][/u][/size]
+
+[size=3][u][i][1.00] - 2026-10-??[/i][/u][/size]
+[list]
+[*] [b]Added[/b]
+[list]
+[*] Initial public version
+[/list]
+[/list]
