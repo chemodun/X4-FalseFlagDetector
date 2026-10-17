@@ -5,7 +5,7 @@ Pirates and smugglers often fly under someone else's flag: a Scale Plate trader 
 ## Features
 
 - **False Flag Detection** research: any ship flying under a false flag that one of your ships, stations or satellites can see is reported, with its name, ID, sector and the flag it shows.
-- **True Owner Identification** research: a more expensive follow-up; every report also names the true owner of the ship, and two more options become available: reveal the true flag of every detected ship, and report only ships whose true owner is your enemy.
+- **True Owner Identification** research: a more expensive follow-up; every report also names the true owner of the ship, and two more options become available: limit the whole detector to ships whose true owner is your enemy, and reveal the true flag of every detected ship.
 - **Context menu**: right-click a detected ship to see a **False flag** line; with True Owner Identification researched, the true owner is shown beside it in its faction colour. Hover over it for the full report.
 - **Notifications**: a warning in the ticker and an entry in the logbook's Alerts, each can be switched off. For 10 minutes after the report the logbook entry shows the ship on the map; a ship carrying a Shadow Tracker keeps that button.
 - **Shadow Tracker**: with [Shadow Tracker](https://steamcommunity.com/sharedfiles/filedetails/?id=3676424693) installed, a Shadow Tracker device is attached to every detected ship, or only to enemy or revealed enemy ships, while you have free devices in your inventory.
@@ -68,13 +68,13 @@ An options page is available via the `Extension Options` menu:
 
 ![Options](docs/images/options.png)
 
-- **Only ships whose true owner is an enemy** - limits everything below to them: ships of other true owners are not reported, revealed or tracked - off by default; needs the True Owner Identification research.
+- **Only ships whose true owner is an enemy** - the whole detector then works on these ships only: ships of other true owners get no ticker message, no logbook entry, no reveal and no Shadow Tracker. The context menu line still shows for every disguised ship in view - off by default; works only once True Owner Identification is researched, greyed out before.
 - **Show a notification in the message ticker** - on by default.
 - **Write an entry to the logbook** - on by default.
 - **Scan interval** - how often the detector checks, from 3 to 60 seconds - 5 by default.
 - **Ships reported per scan** - at most this many new ships are reported by one scan; the others wait for the next scans, so a sensor network that suddenly sees many disguised ships does not flood the logbook. 0 reports all of them at once - 3 by default.
 - **Report again after being out of view for** - a ship that comes back into view under the same false flag after at least this many minutes out of view is reported again, from 0 to 120 minutes; 0 never reports it again - 0 by default.
-- **Reveal the true flag of every detected ship** - strips the false flag of every reported ship, as a police scan does, so it shows its true owner and the local forces can respond - off by default; needs the True Owner Identification research.
+- **Reveal the true flag of every detected ship** - strips the false flag of every reported ship, as a police scan does, so it shows its true owner and the local forces can respond - off by default; works only once True Owner Identification is researched, greyed out before.
 - **Attach a Shadow Tracker to** - No ship, Every detected ship, Enemy ships only, or Revealed enemy ships only (with the reveal option on) - No ship by default; the two enemy choices need the True Owner Identification research. Available only with Shadow Tracker 8.00.04 or newer, which lets other extensions request tracking.
 - **Debug Level** - None, Debug or Trace; writes detailed lines to the game log.
 
@@ -93,8 +93,8 @@ An options page is available via the `Extension Options` menu:
 ### [1.10] - 2026-10-17
 
 - **Added**
-  - Option to reveal the true flag of every detected ship
-  - Option to report only ships whose true owner is an enemy
+  - Option to limit the whole detector to ships whose true owner is an enemy (needs True Owner Identification)
+  - Option to reveal the true flag of every detected ship (needs True Owner Identification)
 - **Changed**
   - Shadow Tracker option is a dropdown: no ship, every detected ship, enemy ships only, or revealed enemy ships only
 
