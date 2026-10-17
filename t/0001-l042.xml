@@ -18,10 +18,14 @@
       <t id="1003">%s v sektoru %s létá pod falešnou vlajkou frakce %s. Skutečný majitel: %s.</t>
       <t id="1004">Detekované lodě pod falešnou vlajkou: %s.</t>
       <t id="1005">Shadow Tracker připojen.</t>
+      <t id="1006">Skutečná vlajka odhalena.</t>
       <t id="1020">\033RFalešná vlajka\033X</t>
       <t id="1021">\033RDetekována falešná vlajka\033X</t>
       <!-- Colour wrapper: AARRGGBB, text -->
       <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Target Limitation (90030) -->
+      <t id="90030">Omezení cílů</t>
 
       <!-- Section: Detection (90000) -->
       <t id="90000">Detekce</t>
@@ -31,10 +35,22 @@
       <t id="90004">Počet hlášených lodí na jedno skenování \(0 = všechny najednou\)</t>
       <t id="90005">Doba mimo dohled před opětovným hlášením \(0 = nikdy\)</t>
 
+      <!-- Section: Identification (90020), titled by 211 -->
+      <t id="90021">Odhalit skutečnou vlajku každé detekované lodi</t>
+      <t id="90022">Odhalit skutečnou vlajku každé detekované lodi \(vyžaduje výzkum Identifikace skutečného majitele\)</t>
+      <t id="90023">Pouze lodě, jejichž skutečný majitel je nepřítel</t>
+      <t id="90024">Pouze lodě, jejichž skutečný majitel je nepřítel \(vyžaduje výzkum Identifikace skutečného majitele\)</t>
+
       <!-- Section: Shadow Tracker (90010) -->
       <t id="90010">Shadow Tracker</t>
-      <t id="90011">Připojit Shadow Tracker ke každé detekované lodi</t>
-      <t id="90012">Připojit Shadow Tracker ke každé detekované lodi \(vyžaduje Shadow Tracker 8.00.04 nebo novější\)</t>
+      <t id="90011">Připojit Shadow Tracker k</t>
+      <t id="90012">Připojit Shadow Tracker k \(vyžaduje Shadow Tracker 8.00.04 nebo novější\)</t>
+      <t id="90013">Žádné lodi</t>
+      <t id="90014">Každé detekované lodi</t>
+      <t id="90015">Pouze nepřátelským lodím</t>
+      <t id="90016">Pouze odhaleným nepřátelským lodím</t>
+      <t id="90017">Vyžaduje výzkum Identifikace skutečného majitele</t>
+      <t id="90018">Nepřátelské lodě, jejichž skutečnou vlajku toto rozšíření odhalilo; vyžaduje výzkum Identifikace skutečného majitele a volbu odhalení</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Ladění</t>

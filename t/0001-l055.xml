@@ -18,10 +18,14 @@
       <t id="1003">%s em %s navega sob a falsa bandeira da facção %s. Verdadeiro proprietário: %s.</t>
       <t id="1004">Naves sob bandeira falsa detectadas: %s.</t>
       <t id="1005">Shadow Tracker acoplado.</t>
+      <t id="1006">Verdadeira bandeira revelada.</t>
       <t id="1020">\033RBandeira falsa\033X</t>
       <t id="1021">\033RBandeira falsa detectada\033X</t>
       <!-- Colour wrapper: AARRGGBB, text -->
       <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Target Limitation (90030) -->
+      <t id="90030">Limitação de alvos</t>
 
       <!-- Section: Detection (90000) -->
       <t id="90000">Detecção</t>
@@ -31,10 +35,22 @@
       <t id="90004">Naves reportadas por varredura \(0 = todas de uma vez\)</t>
       <t id="90005">Reportar novamente após ficar fora de vista por \(0 = nunca\)</t>
 
+      <!-- Section: Identification (90020), titled by 211 -->
+      <t id="90021">Revelar a verdadeira bandeira de cada nave detectada</t>
+      <t id="90022">Revelar a verdadeira bandeira de cada nave detectada \(requer a pesquisa Identificação do Verdadeiro Proprietário\)</t>
+      <t id="90023">Apenas naves cujo verdadeiro proprietário é inimigo</t>
+      <t id="90024">Apenas naves cujo verdadeiro proprietário é inimigo \(requer a pesquisa Identificação do Verdadeiro Proprietário\)</t>
+
       <!-- Section: Shadow Tracker (90010) -->
       <t id="90010">Shadow Tracker</t>
-      <t id="90011">Acoplar um Shadow Tracker a cada nave detectada</t>
-      <t id="90012">Acoplar um Shadow Tracker a cada nave detectada \(requer Shadow Tracker 8.00.04 ou mais recente\)</t>
+      <t id="90011">Acoplar um Shadow Tracker a</t>
+      <t id="90012">Acoplar um Shadow Tracker a \(requer Shadow Tracker 8.00.04 ou mais recente\)</t>
+      <t id="90013">Nenhuma nave</t>
+      <t id="90014">Cada nave detectada</t>
+      <t id="90015">Apenas naves inimigas</t>
+      <t id="90016">Apenas naves inimigas reveladas</t>
+      <t id="90017">Requer a pesquisa Identificação do Verdadeiro Proprietário</t>
+      <t id="90018">Naves inimigas cuja verdadeira bandeira esta extensão revelou; requer a pesquisa Identificação do Verdadeiro Proprietário e a opção de revelar</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Depuração</t>

@@ -18,10 +18,14 @@
       <t id="1003">%s, %s sektöründe sahte %s bayrağı altında uçuyor. Gerçek sahibi: %s.</t>
       <t id="1004">Sahte bayrak altında uçan gemiler tespit edildi: %s.</t>
       <t id="1005">Shadow Tracker takıldı.</t>
+      <t id="1006">Gerçek bayrak açığa çıkarıldı.</t>
       <t id="1020">\033RSahte bayrak\033X</t>
       <t id="1021">\033RSahte bayrak tespit edildi\033X</t>
       <!-- Colour wrapper: AARRGGBB, text -->
       <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Target Limitation (90030) -->
+      <t id="90030">Hedef sınırlaması</t>
 
       <!-- Section: Detection (90000) -->
       <t id="90000">Tespit</t>
@@ -31,10 +35,22 @@
       <t id="90004">Tarama başına bildirilen gemi sayısı \(0 = hepsi bir kerede\)</t>
       <t id="90005">Yeniden bildirim için görüş dışında kalma süresi \(0 = asla\)</t>
 
+      <!-- Section: Identification (90020), titled by 211 -->
+      <t id="90021">Tespit edilen her geminin gerçek bayrağını açığa çıkar</t>
+      <t id="90022">Tespit edilen her geminin gerçek bayrağını açığa çıkar \(Gerçek Sahibin Belirlenmesi araştırması gerekir\)</t>
+      <t id="90023">Yalnızca gerçek sahibi düşman olan gemiler</t>
+      <t id="90024">Yalnızca gerçek sahibi düşman olan gemiler \(Gerçek Sahibin Belirlenmesi araştırması gerekir\)</t>
+
       <!-- Section: Shadow Tracker (90010) -->
       <t id="90010">Shadow Tracker</t>
-      <t id="90011">Tespit edilen her gemiye Shadow Tracker tak</t>
-      <t id="90012">Tespit edilen her gemiye Shadow Tracker tak \(Shadow Tracker 8.00.04 veya daha yenisi gerekir\)</t>
+      <t id="90011">Shadow Tracker takılacak gemiler</t>
+      <t id="90012">Shadow Tracker takılacak gemiler \(Shadow Tracker 8.00.04 veya daha yenisi gerekir\)</t>
+      <t id="90013">Hiçbiri</t>
+      <t id="90014">Tespit edilen her gemi</t>
+      <t id="90015">Yalnızca düşman gemiler</t>
+      <t id="90016">Yalnızca açığa çıkarılmış düşman gemiler</t>
+      <t id="90017">Gerçek Sahibin Belirlenmesi araştırması gerekir</t>
+      <t id="90018">Bu eklentinin gerçek bayrağını açığa çıkardığı düşman gemiler; Gerçek Sahibin Belirlenmesi araştırması ve açığa çıkarma seçeneği gerekir</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Hata Ayıklama</t>

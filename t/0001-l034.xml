@@ -18,10 +18,14 @@
       <t id="1003">%s en %s navega bajo la falsa bandera de la facción %s. Verdadero propietario: %s.</t>
       <t id="1004">Naves bajo bandera falsa detectadas: %s.</t>
       <t id="1005">Shadow Tracker colocado.</t>
+      <t id="1006">Bandera real revelada.</t>
       <t id="1020">\033RBandera falsa\033X</t>
       <t id="1021">\033RBandera falsa detectada\033X</t>
       <!-- Colour wrapper: AARRGGBB, text -->
       <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Target Limitation (90030) -->
+      <t id="90030">Limitación de objetivos</t>
 
       <!-- Section: Detection (90000) -->
       <t id="90000">Detección</t>
@@ -31,10 +35,22 @@
       <t id="90004">Naves notificadas por escaneo \(0 = todas a la vez\)</t>
       <t id="90005">Volver a informar tras estar fuera de vista durante \(0 = nunca\)</t>
 
+      <!-- Section: Identification (90020), titled by 211 -->
+      <t id="90021">Revelar la bandera real de cada nave detectada</t>
+      <t id="90022">Revelar la bandera real de cada nave detectada \(requiere la investigación Identificación del verdadero propietario\)</t>
+      <t id="90023">Solo naves cuyo verdadero propietario sea enemigo</t>
+      <t id="90024">Solo naves cuyo verdadero propietario sea enemigo \(requiere la investigación Identificación del verdadero propietario\)</t>
+
       <!-- Section: Shadow Tracker (90010) -->
       <t id="90010">Shadow Tracker</t>
-      <t id="90011">Colocar un Shadow Tracker en cada nave detectada</t>
-      <t id="90012">Colocar un Shadow Tracker en cada nave detectada \(requiere Shadow Tracker 8.00.04 o posterior\)</t>
+      <t id="90011">Colocar un Shadow Tracker en</t>
+      <t id="90012">Colocar un Shadow Tracker en \(requiere Shadow Tracker 8.00.04 o posterior\)</t>
+      <t id="90013">Ninguna nave</t>
+      <t id="90014">Cada nave detectada</t>
+      <t id="90015">Solo naves enemigas</t>
+      <t id="90016">Solo naves enemigas reveladas</t>
+      <t id="90017">Requiere la investigación Identificación del verdadero propietario</t>
+      <t id="90018">Naves enemigas cuya bandera real ha revelado esta extensión; requiere la investigación Identificación del verdadero propietario y la opción de revelar</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Depuración</t>

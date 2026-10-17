@@ -18,10 +18,14 @@
       <t id="1003">%s in %s naviga sotto la falsa bandiera della fazione %s. Vero proprietario: %s.</t>
       <t id="1004">Navi sotto falsa bandiera rilevate: %s.</t>
       <t id="1005">Shadow Tracker applicato.</t>
+      <t id="1006">Vera bandiera rivelata.</t>
       <t id="1020">\033RFalsa bandiera\033X</t>
       <t id="1021">\033RFalsa bandiera rilevata\033X</t>
       <!-- Colour wrapper: AARRGGBB, text -->
       <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Target Limitation (90030) -->
+      <t id="90030">Limitazione dei bersagli</t>
 
       <!-- Section: Detection (90000) -->
       <t id="90000">Rilevamento</t>
@@ -31,10 +35,22 @@
       <t id="90004">Navi segnalate per scansione \(0 = tutte insieme\)</t>
       <t id="90005">Nuova segnalazione dopo un periodo fuori vista di \(0 = mai\)</t>
 
+      <!-- Section: Identification (90020), titled by 211 -->
+      <t id="90021">Rivela la vera bandiera di ogni nave rilevata</t>
+      <t id="90022">Rivela la vera bandiera di ogni nave rilevata \(richiede la ricerca Identificazione del Vero Proprietario\)</t>
+      <t id="90023">Solo navi il cui vero proprietario è nemico</t>
+      <t id="90024">Solo navi il cui vero proprietario è nemico \(richiede la ricerca Identificazione del Vero Proprietario\)</t>
+
       <!-- Section: Shadow Tracker (90010) -->
       <t id="90010">Shadow Tracker</t>
-      <t id="90011">Applica uno Shadow Tracker a ogni nave rilevata</t>
-      <t id="90012">Applica uno Shadow Tracker a ogni nave rilevata \(richiede Shadow Tracker 8.00.04 o successivo\)</t>
+      <t id="90011">Applica uno Shadow Tracker a</t>
+      <t id="90012">Applica uno Shadow Tracker a \(richiede Shadow Tracker 8.00.04 o successivo\)</t>
+      <t id="90013">Nessuna nave</t>
+      <t id="90014">Ogni nave rilevata</t>
+      <t id="90015">Solo navi nemiche</t>
+      <t id="90016">Solo navi nemiche rivelate</t>
+      <t id="90017">Richiede la ricerca Identificazione del Vero Proprietario</t>
+      <t id="90018">Navi nemiche di cui questa estensione ha rivelato la vera bandiera; richiede la ricerca Identificazione del Vero Proprietario e l'opzione di rivelazione</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Debug</t>

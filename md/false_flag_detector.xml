@@ -28,8 +28,15 @@
           $scanInterval = 5,
           $maxPerScan = 3,
           $reappearMinutes = 0,
-          $useShadowTracker = 0,
+          $autoReveal = 0,
+          $enemiesOnly = 0,
+          $trackerMode = 'off',
         ]" />
+        <!-- 1.00 stored a checkbox -->
+        <do_if value="@player.entity.$FalseFlagDetectorConfig != null and player.entity.$FalseFlagDetectorConfig.$useShadowTracker?">
+          <set_value name="player.entity.$FalseFlagDetectorConfig.$trackerMode" exact="if player.entity.$FalseFlagDetectorConfig.$useShadowTracker == 1 or player.entity.$FalseFlagDetectorConfig.$useShadowTracker == true then 'any' else 'off'" />
+          <remove_value name="player.entity.$FalseFlagDetectorConfig.$useShadowTracker" />
+        </do_if>
         <do_if value="@player.entity.$FalseFlagDetectorConfig == null">
           <set_value name="player.entity.$FalseFlagDetectorConfig" exact="$cfg" />
         </do_if>
@@ -99,10 +106,13 @@
         <include_actions ref="ReadDebugChances" />
         <set_value name="$cfg" exact="player.entity.$FalseFlagDetectorConfig" />
         <set_value name="$identify" exact="ware.research_false_flag_detector_identification.research.unlocked" />
-        <set_value name="$useTracker" exact="(@$cfg.$useShadowTracker == 1 or @$cfg.$useShadowTracker == true) and @md.Shadow_Tracker_Interface.Track_Object.exists" />
+        <set_value name="$trackerMode" exact="if @md.Shadow_Tracker_Interface.Track_Object.exists then @$cfg.$trackerMode else 'off'" />
         <set_value name="$maxPerScan" exact="if @$cfg.$maxPerScan gt 0 then $cfg.$maxPerScan else 0" />
         <set_value name="$reappearAfter" exact="if @$cfg.$reappearMinutes gt 0 then $cfg.$reappearMinutes * 60s else 0s" />
+        <set_value name="$autoReveal" exact="$identify and (@$cfg.$autoReveal == 1 or @$cfg.$autoReveal == true)" />
+        <set_value name="$enemiesOnly" exact="$identify and (@$cfg.$enemiesOnly == 1 or @$cfg.$enemiesOnly == true)" />
         <set_value name="$found" exact="[]" />
+        <set_value name="$reveal" exact="[]" />
         <!-- ship -> table[$cover = flag at the last report, $lastSeen = last scan it was in view] -->
         <do_if value="typeof $Reported != datatype.table">
           <set_value name="$Reported" exact="table[]" />
@@ -117,7 +127,7 @@
 
         <!-- Vanilla swaps one cover for another in the same moment, so a changed flag is compared, not only a dropped one -->
         <do_for_each name="$ship" in="md.$CoveredObjects">
-          <do_if value="$ship.isoperational and $ship.isclass.ship and $ship.type != shiptype.lasertower and @$ship.coverowner and $ship.trueowner != faction.player and $ship.coverowner != $ship.trueowner and $ship.isinliveview">
+          <do_if value="$ship.isoperational and $ship.isclass.ship and $ship.type != shiptype.lasertower and @$ship.coverowner and $ship.trueowner != faction.player and $ship.coverowner != $ship.trueowner and $ship.isinliveview and (not $enemiesOnly or $ship.trueowner.hasrelation.enemy.{faction.player})">
             <set_value name="$entry" exact="@$Reported.{$ship}" />
             <!-- A Shadow Tracker keeps the ship on the map, so it never reappears -->
             <do_if value="$entry == null or $entry.$cover != $ship.coverowner or ($reappearAfter gt 0s and player.age - $entry.$lastSeen ge $reappearAfter and not @player.entity.$shadowTracker.$installed.indexof.{$ship})">
@@ -129,6 +139,10 @@
             </do_if>
             <do_else>
               <set_value name="$entry.$lastSeen" exact="player.age" />
+              <!-- Reported before the option was on -->
+              <do_if value="$autoReveal">
+                <append_to_list name="$reveal" exact="$ship" />
+              </do_if>
             </do_else>
           </do_if>
         </do_for_each>
@@ -137,7 +151,8 @@
 
         <do_for_each name="$ship" in="$found">
           <set_value name="$trackerAttached" exact="false" />
-          <do_if value="$useTracker and not @player.entity.$shadowTracker.$installed.indexof.{$ship}">
+          <set_value name="$trackThis" exact="$trackerMode == 'any' or ($identify and $ship.trueowner.hasrelation.enemy.{faction.player} and ($trackerMode == 'enemy' or ($trackerMode == 'revealedEnemy' and $autoReveal)))" />
+          <do_if value="$trackThis and not @player.entity.$shadowTracker.$installed.indexof.{$ship}">
             <signal_cue_instantly cue="md.Shadow_Tracker_Interface.Track_Object" param="table[$object = $ship]" />
             <set_value name="$trackerAttached" exact="@player.entity.$shadowTracker.$installed.indexof.{$ship} gt 0" />
           </do_if>
@@ -148,7 +163,11 @@
           <do_if value="$trackerAttached">
             <set_value name="$text" exact="$text + ' ' + {1972092446, 1005}" />
           </do_if>
-          <debug_text text="'FalseFlagDetector: %s covered as %s, true owner %s, tracker attached %s'.[$ship.debugname, $ship.coverowner, $ship.trueowner, $trackerAttached]" chance="$debugChance" />
+          <do_if value="$autoReveal">
+            <set_value name="$text" exact="$text + ' ' + {1972092446, 1006}" />
+            <append_to_list name="$reveal" exact="$ship" />
+          </do_if>
+          <debug_text text="'FalseFlagDetector: %s covered as %s, true owner %s, tracker attached %s, reveal %s'.[$ship.debugname, $ship.coverowner, $ship.trueowner, $trackerAttached, $autoReveal]" chance="$debugChance" />
           <do_if value="@$cfg.$notifyLogbook == 1 or @$cfg.$notifyLogbook == true">
             <write_to_logbook category="alerts" title="{1972092446, 1021}" text="$text" interaction="showonmap" object="$ship" />
           </do_if>
@@ -163,13 +182,23 @@
           </do_else>
         </do_if>
 
+        <!-- As a police scan does (masstraffic.police.xml): md/cover.xml LoseCover drops the cover -->
+        <do_for_each name="$ship" in="$reveal">
+          <debug_text text="'FalseFlagDetector: revealing %s, covered as %s, true owner %s'.[$ship.debugname, $ship.coverowner, $ship.trueowner]" chance="$debugChance" />
+          <signal_objects object="$ship" param="'LoseCover'" param2="true" />
+        </do_for_each>
+
         <remove_value name="$ship" />
         <remove_value name="$text" />
         <remove_value name="$trackerAttached" />
+        <remove_value name="$trackThis" />
+        <remove_value name="$reveal" />
+        <remove_value name="$autoReveal" />
+        <remove_value name="$enemiesOnly" />
         <remove_value name="$found" />
         <remove_value name="$maxPerScan" />
         <remove_value name="$reappearAfter" />
-        <remove_value name="$useTracker" />
+        <remove_value name="$trackerMode" />
         <remove_value name="$identify" />
         <remove_value name="$cfg" />
         <include_actions ref="ClearDebugChances" />
@@ -259,7 +288,7 @@
           </actions>
         </cue>
 
-        <cue name="Options_Menu" instantiate="true" version="1">
+        <cue name="Options_Menu" instantiate="true" version="2">
           <conditions>
             <event_cue_signalled />
           </conditions>
@@ -267,6 +296,20 @@
             <include_actions ref="Ensure_Config" />
             <set_value name="$cfg" exact="player.entity.$FalseFlagDetectorConfig" />
             <set_value name="$hasTracker" exact="@md.Shadow_Tracker_Interface.Track_Object.exists" />
+            <set_value name="$hasIdentify" exact="ware.research_false_flag_detector_identification.research.unlocked" />
+
+            <run_actions ref="md.Options_Helper.Add_Title_Row">
+              <param name="title" value="{1972092446, 90030}" />
+            </run_actions>
+            <run_actions ref="md.Options_Helper.Add_Checkbox">
+              <param name="id" value="'enemiesOnly'" />
+              <param name="col" value="1" />
+              <param name="textColSpan" value="11" />
+              <param name="text" value="if $hasIdentify then {1972092446, 90023} else {1972092446, 90024}" />
+              <param name="data" value="$cfg" />
+              <param name="active" value="$hasIdentify" />
+              <param name="handle" value="Handle_Checkbox_Changed" />
+            </run_actions>
 
             <run_actions ref="md.Options_Helper.Add_Title_Row">
               <param name="title" value="{1972092446, 90000}" />
@@ -324,17 +367,41 @@
             </run_actions>
 
             <run_actions ref="md.Options_Helper.Add_Title_Row">
-              <param name="title" value="{1972092446, 90010}" />
+              <param name="title" value="{1972092446, 211}" />
             </run_actions>
             <run_actions ref="md.Options_Helper.Add_Checkbox">
-              <param name="id" value="'useShadowTracker'" />
+              <param name="id" value="'autoReveal'" />
               <param name="col" value="1" />
               <param name="textColSpan" value="11" />
-              <param name="text" value="if $hasTracker then {1972092446, 90011} else {1972092446, 90012}" />
+              <param name="text" value="if $hasIdentify then {1972092446, 90021} else {1972092446, 90022}" />
               <param name="data" value="$cfg" />
-              <param name="active" value="$hasTracker" />
+              <param name="active" value="$hasIdentify" />
               <param name="handle" value="Handle_Checkbox_Changed" />
             </run_actions>
+
+            <run_actions ref="md.Options_Helper.Add_Title_Row">
+              <param name="title" value="{1972092446, 90010}" />
+            </run_actions>
+            <set_value name="$trackerOptions" exact="[
+              table[$text = {1972092446, 90013}, $value = 'off'],
+              table[$text = {1972092446, 90014}, $value = 'any'],
+              table[$text = {1972092446, 90015}, $value = 'enemy', $mouseovertext = if $hasIdentify then '' else {1972092446, 90017}],
+              table[$text = {1972092446, 90016}, $value = 'revealedEnemy', $mouseovertext = {1972092446, 90018}]
+            ]" />
+            <set_value name="$trackerCurrentIndex" exact="['off', 'any', 'enemy', 'revealedEnemy'].indexof.{@$cfg.$trackerMode}" />
+            <run_actions ref="md.Options_Helper.Add_Dropdown">
+              <param name="id" value="'trackerMode'" />
+              <param name="options" value="$trackerOptions" />
+              <param name="currentIndex" value="if $trackerCurrentIndex gt 0 then $trackerCurrentIndex else 1" />
+              <param name="col" value="1" />
+              <param name="textColSpan" value="6" />
+              <param name="text" value="if $hasTracker then {1972092446, 90011} else {1972092446, 90012}" />
+              <param name="dropdownColSpan" value="6" />
+              <param name="active" value="$hasTracker" />
+              <param name="handle" value="Handle_Dropdown_Changed" />
+            </run_actions>
+            <remove_value name="$trackerOptions" />
+            <remove_value name="$trackerCurrentIndex" />
 
             <run_actions ref="md.Options_Helper.Add_Title_Row">
               <param name="title" value="{1972092446, 90900}" />
@@ -364,6 +431,7 @@
             <remove_value name="$debugLevelIndexes" />
             <remove_value name="$debugLevelCurrentIndex" />
             <remove_value name="$hasTracker" />
+            <remove_value name="$hasIdentify" />
             <remove_value name="$cfg" />
           </actions>
         </cue>

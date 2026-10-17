@@ -18,10 +18,14 @@
       <t id="1003">%s w sektorze %s lata pod fałszywą banderą frakcji %s. Prawdziwy właściciel: %s.</t>
       <t id="1004">Wykryte statki pod fałszywą banderą: %s.</t>
       <t id="1005">Przyczepiono Shadow Tracker.</t>
+      <t id="1006">Ujawniono prawdziwą banderę.</t>
       <t id="1020">\033RFałszywa bandera\033X</t>
       <t id="1021">\033RWykryto fałszywą banderę\033X</t>
       <!-- Colour wrapper: AARRGGBB, text -->
       <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Target Limitation (90030) -->
+      <t id="90030">Ograniczenie celów</t>
 
       <!-- Section: Detection (90000) -->
       <t id="90000">Wykrywanie</t>
@@ -31,10 +35,22 @@
       <t id="90004">Statki zgłaszane na skanowanie \(0 = wszystkie naraz\)</t>
       <t id="90005">Zgłaszaj ponownie po zniknięciu z pola widzenia na \(0 = nigdy\)</t>
 
+      <!-- Section: Identification (90020), titled by 211 -->
+      <t id="90021">Ujawniaj prawdziwą banderę każdego wykrytego statku</t>
+      <t id="90022">Ujawniaj prawdziwą banderę każdego wykrytego statku \(wymaga badania Identyfikacja prawdziwego właściciela\)</t>
+      <t id="90023">Tylko statki, których prawdziwy właściciel jest wrogiem</t>
+      <t id="90024">Tylko statki, których prawdziwy właściciel jest wrogiem \(wymaga badania Identyfikacja prawdziwego właściciela\)</t>
+
       <!-- Section: Shadow Tracker (90010) -->
       <t id="90010">Shadow Tracker</t>
-      <t id="90011">Przyczepiaj Shadow Tracker do każdego wykrytego statku</t>
-      <t id="90012">Przyczepiaj Shadow Tracker do każdego wykrytego statku \(wymaga Shadow Tracker w wersji 8.00.04 lub nowszej\)</t>
+      <t id="90011">Przyczepiaj Shadow Tracker do</t>
+      <t id="90012">Przyczepiaj Shadow Tracker do \(wymaga Shadow Tracker w wersji 8.00.04 lub nowszej\)</t>
+      <t id="90013">Żadnego statku</t>
+      <t id="90014">Każdego wykrytego statku</t>
+      <t id="90015">Tylko wrogich statków</t>
+      <t id="90016">Tylko ujawnionych wrogich statków</t>
+      <t id="90017">Wymaga badania Identyfikacja prawdziwego właściciela</t>
+      <t id="90018">Wrogie statki, których prawdziwą banderę ujawniło to rozszerzenie; wymaga badania Identyfikacja prawdziwego właściciela i opcji ujawniania</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Debugowanie</t>

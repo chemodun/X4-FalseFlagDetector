@@ -18,10 +18,14 @@
       <t id="1003">%s in %s fliegt unter falscher Flagge der Fraktion %s. Wahrer Besitzer: %s.</t>
       <t id="1004">Schiffe unter falscher Flagge entdeckt: %s.</t>
       <t id="1005">Shadow Tracker angebracht.</t>
+      <t id="1006">Wahre Flagge aufgedeckt.</t>
       <t id="1020">\033RFalsche Flagge\033X</t>
       <t id="1021">\033RFalsche Flagge entdeckt\033X</t>
       <!-- Colour wrapper: AARRGGBB, text -->
       <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Target Limitation (90030) -->
+      <t id="90030">Zielbeschränkung</t>
 
       <!-- Section: Detection (90000) -->
       <t id="90000">Erkennung</t>
@@ -31,10 +35,22 @@
       <t id="90004">Gemeldete Schiffe pro Scan \(0 = alle auf einmal\)</t>
       <t id="90005">Erneut melden, wenn außer Sicht seit \(0 = nie\)</t>
 
+      <!-- Section: Identification (90020), titled by 211 -->
+      <t id="90021">Die wahre Flagge jedes entdeckten Schiffs aufdecken</t>
+      <t id="90022">Die wahre Flagge jedes entdeckten Schiffs aufdecken \(erfordert die Forschung Identifizierung des wahren Besitzers\)</t>
+      <t id="90023">Nur Schiffe, deren wahrer Besitzer ein Feind ist</t>
+      <t id="90024">Nur Schiffe, deren wahrer Besitzer ein Feind ist \(erfordert die Forschung Identifizierung des wahren Besitzers\)</t>
+
       <!-- Section: Shadow Tracker (90010) -->
       <t id="90010">Shadow Tracker</t>
-      <t id="90011">Einen Shadow Tracker an jedem entdeckten Schiff anbringen</t>
-      <t id="90012">Einen Shadow Tracker an jedem entdeckten Schiff anbringen \(erfordert Shadow Tracker 8.00.04 oder neuer\)</t>
+      <t id="90011">Shadow Tracker anbringen an</t>
+      <t id="90012">Shadow Tracker anbringen an \(erfordert Shadow Tracker 8.00.04 oder neuer\)</t>
+      <t id="90013">Keinem Schiff</t>
+      <t id="90014">Jedem entdeckten Schiff</t>
+      <t id="90015">Nur feindlichen Schiffen</t>
+      <t id="90016">Nur aufgedeckten feindlichen Schiffen</t>
+      <t id="90017">Erfordert die Forschung Identifizierung des wahren Besitzers</t>
+      <t id="90018">Feindliche Schiffe, deren wahre Flagge diese Erweiterung aufgedeckt hat; erfordert die Forschung Identifizierung des wahren Besitzers und die Option zum Aufdecken</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Debug</t>

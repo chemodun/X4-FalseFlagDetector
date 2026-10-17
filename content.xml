@@ -3,11 +3,12 @@
   id="ws_3820999285"
   name="False Flag Detector"
   author="Chem O`Dun"
-  version="100"
-  date="2026-10-16"
+  version="110"
+  date="2026-10-17"
+  enabled="true"
   save="false"
   sync="false"
-  lastupdate="1792179885"
+  lastupdate="1792236964"
   description="Reports ships flying under a false flag that any of your ships, stations or satellites can see. Unlocked by research.">
   <text language="7"
     description="Reports ships flying under a false flag that any of your ships, stations or satellites can see. Unlocked by research."></text>

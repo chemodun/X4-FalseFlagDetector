@@ -18,10 +18,14 @@
       <t id="1003">%s in %s is flying under a false flag: %s. True owner: %s.</t>
       <t id="1004">%s ships flying under false flags detected.</t>
       <t id="1005">Shadow Tracker attached.</t>
+      <t id="1006">True flag revealed.</t>
       <t id="1020">\033RFalse flag\033X</t>
       <t id="1021">\033RFalse flag detected\033X</t>
       <!-- Colour wrapper: AARRGGBB, text -->
       <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Target Limitation (90030) -->
+      <t id="90030">Target Limitation</t>
 
       <!-- Section: Detection (90000) -->
       <t id="90000">Detection</t>
@@ -31,10 +35,22 @@
       <t id="90004">Ships reported per scan \(0 = all at once\)</t>
       <t id="90005">Report again after being out of view for \(0 = never\)</t>
 
+      <!-- Section: Identification (90020), titled by 211 -->
+      <t id="90021">Reveal the true flag of every detected ship</t>
+      <t id="90022">Reveal the true flag of every detected ship \(needs the True Owner Identification research\)</t>
+      <t id="90023">Only ships whose true owner is an enemy</t>
+      <t id="90024">Only ships whose true owner is an enemy \(needs the True Owner Identification research\)</t>
+
       <!-- Section: Shadow Tracker (90010) -->
       <t id="90010">Shadow Tracker</t>
-      <t id="90011">Attach a Shadow Tracker to every detected ship</t>
-      <t id="90012">Attach a Shadow Tracker to every detected ship \(needs Shadow Tracker 8.00.04 or newer\)</t>
+      <t id="90011">Attach a Shadow Tracker to</t>
+      <t id="90012">Attach a Shadow Tracker to \(needs Shadow Tracker 8.00.04 or newer\)</t>
+      <t id="90013">No ship</t>
+      <t id="90014">Every detected ship</t>
+      <t id="90015">Enemy ships only</t>
+      <t id="90016">Revealed enemy ships only</t>
+      <t id="90017">Needs the True Owner Identification research</t>
+      <t id="90018">Enemy ships whose true flag this extension revealed; needs the True Owner Identification research and the reveal option</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Debug</t>

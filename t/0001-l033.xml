@@ -18,10 +18,14 @@
       <t id="1003">%s dans %s navigue sous le faux pavillon de la faction %s. Véritable propriétaire : %s.</t>
       <t id="1004">Vaisseaux sous faux pavillon détectés : %s.</t>
       <t id="1005">Shadow Tracker fixé.</t>
+      <t id="1006">Vrai pavillon révélé.</t>
       <t id="1020">\033RFaux pavillon\033X</t>
       <t id="1021">\033RFaux pavillon détecté\033X</t>
       <!-- Colour wrapper: AARRGGBB, text -->
       <t id="1010">\033#%s#%s\033X</t>
+
+      <!-- Section: Target Limitation (90030) -->
+      <t id="90030">Limitation des cibles</t>
 
       <!-- Section: Detection (90000) -->
       <t id="90000">Détection</t>
@@ -31,10 +35,22 @@
       <t id="90004">Vaisseaux signalés par scan \(0 = tous à la fois\)</t>
       <t id="90005">Signaler à nouveau après avoir été hors de vue pendant \(0 = jamais\)</t>
 
+      <!-- Section: Identification (90020), titled by 211 -->
+      <t id="90021">Révéler le vrai pavillon de chaque vaisseau détecté</t>
+      <t id="90022">Révéler le vrai pavillon de chaque vaisseau détecté \(nécessite la recherche Identification du véritable propriétaire\)</t>
+      <t id="90023">Uniquement les vaisseaux dont le véritable propriétaire est un ennemi</t>
+      <t id="90024">Uniquement les vaisseaux dont le véritable propriétaire est un ennemi \(nécessite la recherche Identification du véritable propriétaire\)</t>
+
       <!-- Section: Shadow Tracker (90010) -->
       <t id="90010">Shadow Tracker</t>
-      <t id="90011">Fixer un Shadow Tracker sur chaque vaisseau détecté</t>
-      <t id="90012">Fixer un Shadow Tracker sur chaque vaisseau détecté \(nécessite Shadow Tracker 8.00.04 ou plus récent\)</t>
+      <t id="90011">Fixer un Shadow Tracker sur</t>
+      <t id="90012">Fixer un Shadow Tracker sur \(nécessite Shadow Tracker 8.00.04 ou plus récent\)</t>
+      <t id="90013">Aucun vaisseau</t>
+      <t id="90014">Chaque vaisseau détecté</t>
+      <t id="90015">Vaisseaux ennemis uniquement</t>
+      <t id="90016">Vaisseaux ennemis révélés uniquement</t>
+      <t id="90017">Nécessite la recherche Identification du véritable propriétaire</t>
+      <t id="90018">Vaisseaux ennemis dont cette extension a révélé le vrai pavillon ; nécessite la recherche Identification du véritable propriétaire et l'option de révélation</t>
 
       <!-- Section: Debug (90900) -->
       <t id="90900">Débogage</t>
